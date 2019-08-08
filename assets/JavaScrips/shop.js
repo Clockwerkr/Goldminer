@@ -41,14 +41,17 @@ cc.Class({
         declineWindow: {
             default: null,
             type: cc.Node
-        }
+        },
+        score1:{
+            default:null,
+            type:cc.AudioClip
+        },
     },
 
     //弹出确认窗口
     showWindow(){
         this.mask.active = true;
         this.confirmWindow.active = true;
-        this.confirmWindow.getComponent(cc.Animation).play('shop_checkWindow');
     },
 
     //点击购买幸运草
@@ -83,12 +86,16 @@ cc.Class({
         //玩家拥有的金钱
         var money = player.money;
         //在商店把玩家拥有的金钱数显示
-        this.moneyLabel.getComponent(cc.Label).string = '￥' + money;
+        this.moneyLabel.getComponent(cc.Label).string = '余额：￥' + money;
     },
 
     
     //confirmWindow确认按钮
     confirmBuy(){
+        //播放音效
+        if(player.soundState == true){
+            this.playBuy(this.score1);
+        }
         //获取金钱
         var money = player.money;
         this.confirmWindow.active = false;
@@ -97,7 +104,7 @@ cc.Class({
             var balance = money - cost;
             //更新玩家拥有的金钱
             player.money = balance;
-            this.moneyLabel.getComponent(cc.Label).string = '￥' + balance;
+            this.moneyLabel.getComponent(cc.Label).string = '余额：￥' + balance;
             switch(type){
                 case 1:
                     this.luckyClover.destroy();
@@ -121,8 +128,7 @@ cc.Class({
                     
             }           
         }else{
-            this.declineWindow.active = true;
-            this.declineWindow.getComponent(cc.Animation).play('shop_declineWindow');   
+            this.declineWindow.active = true; 
         }              
     },
 
@@ -140,8 +146,10 @@ cc.Class({
 
     //跳转到下一关卡
     nextLevel() {
+        player.gameOver = false;
         cc.director.loadScene('Game');
-    }
-
-    
+    },
+    playBuy:function(clip){
+        cc.audioEngine.playEffect(clip,false);
+    },
 });

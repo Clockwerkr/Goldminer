@@ -1,0 +1,121 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "fireworks1",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 7,
+  "speed": 1,
+  "wrapMode": "0",
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "cbc97a3a-f398-4abe-be37-a372115f7930"
+            }
+          },
+          {
+            "frame": 0.14285714285714285,
+            "value": {
+              "__uuid__": "90cbeca7-64a8-44a0-9f53-fe09a1d5b2e5"
+            }
+          },
+          {
+            "frame": 0.2857142857142857,
+            "value": {
+              "__uuid__": "f30c4077-a678-435d-b48b-79940eee74db"
+            }
+          },
+          {
+            "frame": 0.42857142857142855,
+            "value": {
+              "__uuid__": "4a8f2d90-df6b-4991-8d31-c889ac35716d"
+            }
+          },
+          {
+            "frame": 0.5714285714285714,
+            "value": {
+              "__uuid__": "10035151-1e47-4413-8968-91023b808066"
+            }
+          },
+          {
+            "frame": 0.7142857142857143,
+            "value": {
+              "__uuid__": "7800d91f-a6fb-403c-8f42-71207e2504ad"
+            }
+          },
+          {
+            "frame": 0.8571428571428571,
+            "value": {
+              "__uuid__": "7092126e-d899-40ed-aa53-765da6e03117"
+            }
+          }
+        ]
+      }
+    },
+    "props": {
+      "scale": [
+        {
+          "frame": 0,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "frame": 0.14285714285714285,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 1,
+            "y": 1
+          }
+        },
+        {
+          "frame": 0.2857142857142857,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 1.2,
+            "y": 1
+          }
+        },
+        {
+          "frame": 0.42857142857142855,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 1.4,
+            "y": 1
+          }
+        },
+        {
+          "frame": 0.5714285714285714,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 1.6,
+            "y": 1
+          }
+        },
+        {
+          "frame": 0.7142857142857143,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 1.8,
+            "y": 1
+          }
+        },
+        {
+          "frame": 0.8571428571428571,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 2,
+            "y": 1
+          }
+        }
+      ]
+    }
+  },
+  "events": []
+}

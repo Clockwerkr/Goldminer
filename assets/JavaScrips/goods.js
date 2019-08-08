@@ -70,7 +70,7 @@ cc.Class({
                     diamond: [cc.v2(282,52), cc.v2(881,187)],
                     treasure: [cc.v2(431,49), cc.v2(744,59)]
                 };
-                this.runGoldMouse(cc.v2(-50,300));
+                this.runGoldMouse(cc.v2(-50,300), cc.v2(1000,300));
                 break;
 
             case 3:    
@@ -81,7 +81,7 @@ cc.Class({
                     diamond: [cc.v2(157,85), cc.v2(501,180), cc.v2(409,52), cc.v2(818,87), cc.v2(71,284), cc.v2(862,165)],
                     treasure: [cc.v2(270,72), cc.v2(472,283), cc.v2(700,59), cc.v2(895,326)]
                 }
-                this.runGoldMouse();
+                this.runGoldMouse(cc.v2(-50,250), cc.v2(1000,250));
                 this.runDiamondMouse(cc.v2(-50,100), cc.v2(1000,100));
         }
         var type,obj, i;
@@ -95,13 +95,13 @@ cc.Class({
     },
 
     //跑黄金老鼠，传入老鼠开始出现的坐标
-    runGoldMouse(){
+    runGoldMouse(fromPosition, toPosition){
         this.schedule(function(){
             cc.log('生成了一只带黄金的老鼠');
             var mouse = cc.instantiate(this['mouse&gold']);
             mouse.parent = this.node;
-            mouse.setPosition(cc.v2(-50,200));
-            var mouseAction = cc.moveTo(this.goldMouseRunTime, cc.v2(1000,200));
+            mouse.setPosition(fromPosition);
+            var mouseAction = cc.moveTo(this.goldMouseRunTime, toPosition);
             mouse.runAction(mouseAction);
             this.scheduleOnce(function(){
                 //如果该只老鼠没有被钩子抓住并销毁，则自销毁
@@ -129,14 +129,5 @@ cc.Class({
                 }
             }, this.diamondMouseRunTime);                 
         }, this.diamondMouseDelayTime);
-    },
-
-    onLoad() {
-        //读入玩家当前关卡传入函数初始化当前的地图
-        this.init(2);
-    },
-
-    
-
-    
+    }    
 });

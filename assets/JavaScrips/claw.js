@@ -10,20 +10,48 @@ cc.Class({
             default:null,
             type:cc.Node
         },
-        goodNode:{
+        goodsNode:{
             default:null,
             type:cc.Node
         },
-       dynamite: {
+        dynamite: {
            default: null,
            type: cc.Prefab
+        },
+
+        //爆炸音效
+       boomAudio:{
+            default:null,
+            type:cc.AudioClip
        },
+
+       //没抓到的音效
+       lowvalueAudio:{
+           default:null,
+           type:cc.AudioClip
+       },
+       //高分音效
+       highvalueAudio:{
+            default:null,
+            type:cc.AudioClip
+       },
+       //高分音效
+       normalvalueAudio:{
+            default:null,
+            type:cc.AudioClip
+       },
+
+       //炸药的数量
+       dynamiteCount: {
+           default: null,
+           type: cc.Label
+       }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        //开启碰撞相关组件，后续放到统一的onLoad中
+        //开启碰撞相关组件
         var manager = cc.director.getCollisionManager();
         manager.enabled = true;
 
@@ -35,14 +63,20 @@ cc.Class({
         //是否有力量药水
         if(player.strong){
             item.speedUp=1.7;
+        }else{
+            item.speedUp = 1;
         }
         //是否有幸运草
         if(player.lucky){
             item.luckyPoint=2;
+        }else{
+            item.luckyPoint = 1;
         }
         //是否有钻石超级加钱
-        if (player.diamondPolish) {
+        if(player.diamondPolish){
             item.diamondPoint=200;
+        }else{
+            item.diamondPoint = 0;
         }
 
         //注册空格按键扔炸药的监听事件
@@ -59,64 +93,75 @@ cc.Class({
 
     //抓钩抓到物体产生动作
     onCollisionEnter:function(other,self){
+        var goodsAnimation = this.goodsNode.getComponent(cc.Animation);
         if(player.ropeState!='down'){
             return false;
         }
         switch(other.tag){
             case 1://大金块
-                item.itemSpeed=2*item.speedUp;
+                item.itemSpeed=0.7*item.speedUp;
                 player.preMoney=400;
                 this.minerAni.play('miner_pull_heavy');
+                goodsAnimation.play('gold1');
                 break;
             case 2://中金块
-                item.itemSpeed=3*item.speedUp;
+                item.itemSpeed=1.2*item.speedUp;
                 player.preMoney=200;
                 this.minerAni.play('miner_pull_heavy');
+                goodsAnimation.play('gold2');
                 break;
             case 3://小金块
-                item.itemSpeed=4*item.speedUp;
+                item.itemSpeed=1.6*item.speedUp;
                 player.preMoney=70;
                 this.minerAni.play('miner_pull_light');
+                goodsAnimation.play('gold3');
                 break;
             case 4://石头1
-                item.itemSpeed=1*item.speedUp;
+                item.itemSpeed=0.7*item.speedUp;
                 player.preMoney=20;
                 this.minerAni.play('miner_pull_heavy');
                 break;
             case 5://石头2
-                item.itemSpeed=1*item.speedUp;
+                item.itemSpeed=0.7*item.speedUp;
                 player.preMoney=20;
                 this.minerAni.play('miner_pull_heavy');
                 break;
             case 6://钻石
-                item.itemSpeed=3*item.speedUp;
+                item.itemSpeed=1.2*item.speedUp;
                 player.preMoney=550+item.diamondPoint;
                 this.minerAni.play('miner_pull_light');
+                goodsAnimation.play('diamond');
                 break;
             case 7://有黄金的老鼠
-                item.itemSpeed=3*item.speedUp;
+                item.itemSpeed=1.4*item.speedUp;
                 player.preMoney=100;
                 this.minerAni.play('miner_pull_light');
                 break;
             case 8://有钻石的老鼠
-                item.itemSpeed=2*item.speedUp;
+                item.itemSpeed=1*item.speedUp;
                 player.preMoney=650+item.diamondPoint;
                 this.minerAni.play('miner_pull_light');
                 break;
             case 9://treasure
-                item.itemSpeed=(Math.round(Math.random()*4)+1)*item.speedUp;
+                item.itemSpeed=(Math.round(Math.random()*2)+1)*item.speedUp;
                 player.preMoney=Math.round(Math.random()*600)*item.luckyPoint;
-                if(item.itemSpeed<=3){
+                if(item.itemSpeed<=1.2){
                     this.minerAni.play('miner_pull_heavy');
                 }else{
                     this.minerAni.play('miner_pull_light');
                 }
                 break;
             case 10://wall
-                item.itemSpeed=4*item.speedUp;
+                item.itemSpeed=2.5*item.speedUp;
                 player.preMoney=0;
                 this.minerAni.play('miner_pull_light');
                 break;
+        }
+
+        //播放得分音效
+        if(player.soundState == true){
+            cc.log("play");
+             this.playAudio();
         }
 
         //产生碰撞后设置抓钩状态为上升
@@ -124,12 +169,24 @@ cc.Class({
         
         //如果钩子抓到的东西不是墙壁，则如下处理
         if(other.tag != 10){
-            var objNode=this.goodNode;
-            var objsprite=other.node.getComponent(cc.Sprite);   //获取抓到的物品结点
-            objNode.getComponent(cc.Sprite).spriteFrame=objsprite.spriteFrame;  //将抓到的结点的图片放置到goodNode中显示
-            objNode.width=other.node.width;
-            objNode.height=other.node.height;
-            this.objShow();
+            var objNode=this.goodsNode;
+            //根据抓取到的物品种类设置goodsNode的位置
+            if(other.tag == 1){
+                objNode.setPosition(cc.v2(-3.5,-42.5));
+            }else{
+                objNode.setPosition(cc.v2(-3.7,-30.7));
+            }
+
+            //如果抓到的不是金块和钻石,则直接把精灵帧赋值过去
+            if(other.tag!= (1||2||3||6) ){
+                var objsprite=other.node.getComponent(cc.Sprite);   //获取抓到的物品结点
+                objNode.getComponent(cc.Sprite).spriteFrame=objsprite.spriteFrame;  //将抓到的结点的图片放置到goodsNode中显示
+                objNode.height = other.node.height;
+                objNode.width = other.node.width;
+            }
+            
+            
+            this.objShow(); 
             other.node.destroy();   //销毁抓到的结点
 
             //玩家可以决定是否丢炸药
@@ -145,6 +202,8 @@ cc.Class({
                 if(player.canThrow == true && player.dynamite > 0){
                     //玩家拥有的炸药数 -1
                     player.dynamite --;
+                    this.dynamiteCount.string = 'x' + player.dynamite;
+
                     //播放矿工扔炸药的动画
                     this.miner.getComponent(cc.Animation).play('miner_throw');
                     player.preMoney = 0;
@@ -165,10 +224,14 @@ cc.Class({
                             this.minerNode.getComponent(cc.Sprite).spriteFrame = this.minerSprite; 
                             var dynamiteAnima = dynamite.getComponent(cc.Animation);
                             dynamiteAnima.play('boom');
+                            //播放爆炸音效
+                            if(player.soundState == true){
+                                cc.audioEngine.play(this.boomAudio,false,0.3);
+                            }
                             dynamiteAnima.on('finished', function(){
                                 dynamite.destroy();
                             }, this);
-                            this.miner.clawClose();
+                            this.miner.clawOpen();
                             item.itemSpeed=5*item.speedUp;
                         }, 0.25);
                     }, 0.25);
@@ -178,13 +241,26 @@ cc.Class({
 
     //抓取物体显示在钩子上
     objShow(){
-        this.goodNode.opacity=255;
+        this.goodsNode.opacity=255;
     },
 
     //抓到原位后隐藏物体
     objHide(){
-        this.goodNode.opacity=0;
-    }
+        this.goodsNode.opacity=0;
+    },
 
-    // update (dt) {},
+    //根据分数判断播放音效
+    playAudio(){
+        if(player.preMoney>=400){
+            cc.audioEngine.play(this.highvalueAudio,false,0.3);
+        }else if(player.preMoney<10){
+            cc.audioEngine.play(this.lowvalueAudio,false,0.3);
+        }else{
+            cc.audioEngine.play(this.normalvalueAudio,false,0.3)
+        }
+    },
+
+    onDestroy(){
+      cc.audioEngine.stop(this.boomAudio);  
+    },
 });
