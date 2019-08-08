@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "miner_throw",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 16,
+  "speed": 1,
+  "wrapMode": "0",
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "c0897925-d853-4a64-b23a-a7201027cafa"
+            }
+          },
+          {
+            "frame": 0.0625,
+            "value": {
+              "__uuid__": "9f3e2530-feb5-413a-8ebc-07c4612385bb"
+            }
+          },
+          {
+            "frame": 0.125,
+            "value": {
+              "__uuid__": "9a7da39b-bc08-462e-831c-d0f235c33528"
+            }
+          },
+          {
+            "frame": 0.1875,
+            "value": {
+              "__uuid__": "0091204f-57d3-41a9-a1c5-0f9c9a89dc5f"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "gold2",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 4,
+  "speed": 1,
+  "wrapMode": "2",
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "f5b7ba07-e440-4a26-a975-bf081a1b992a"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "5011b31e-c280-4226-9c0d-135b7a3ac5c8"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "e5e9b556-5091-46b3-b027-259734d545c9"
+            }
+          },
+          {
+            "frame": 0.75,
+            "value": {
+              "__uuid__": "7efc6bcf-82ec-45a5-99fd-3154f4fb9745"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

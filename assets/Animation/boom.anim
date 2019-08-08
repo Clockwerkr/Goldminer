@@ -1,0 +1,79 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "dynamite",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 4,
+  "speed": 4,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "10eb53ae-1883-4e3e-954d-7315a7942c09"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "7e13bacb-28a2-4d4d-8cb5-b4a429ff6760"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "7177c4df-901f-46c0-9644-002063b059fc"
+            }
+          },
+          {
+            "frame": 0.75,
+            "value": {
+              "__uuid__": "6642a03f-1f21-44ca-a191-0c4256cff890"
+            }
+          }
+        ]
+      }
+    },
+    "props": {
+      "scale": [
+        {
+          "frame": 0,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 2,
+            "y": 1
+          }
+        },
+        {
+          "frame": 0.25,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 4,
+            "y": 2
+          }
+        },
+        {
+          "frame": 0.5,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 6,
+            "y": 3
+          }
+        },
+        {
+          "frame": 0.75,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 8,
+            "y": 4
+          }
+        }
+      ]
+    }
+  },
+  "events": []
+}

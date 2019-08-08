@@ -1,0 +1,67 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mouse&gold",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 8,
+  "speed": 1,
+  "wrapMode": "2",
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "bfb6a044-70e3-4003-9a13-df46a9b4790d"
+            }
+          },
+          {
+            "frame": 0.125,
+            "value": {
+              "__uuid__": "fbe689e6-e074-4d19-b800-8c2f7d5f85fe"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "f97ff269-1a2d-47a7-8f25-7724bcdc32a9"
+            }
+          },
+          {
+            "frame": 0.375,
+            "value": {
+              "__uuid__": "d4860d77-be99-4752-ac81-339d801c4760"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "2212433c-233b-4b53-8310-29353272aea2"
+            }
+          },
+          {
+            "frame": 0.625,
+            "value": {
+              "__uuid__": "39a06ac2-25c8-45c0-b7ab-08373de2ba86"
+            }
+          },
+          {
+            "frame": 0.75,
+            "value": {
+              "__uuid__": "e32bf1d2-22b3-4690-92f7-e253f0593512"
+            }
+          },
+          {
+            "frame": 0.875,
+            "value": {
+              "__uuid__": "a0c2c387-fc18-4e4b-a540-2ba7f9675355"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
