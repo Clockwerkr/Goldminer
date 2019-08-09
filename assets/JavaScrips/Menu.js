@@ -72,7 +72,7 @@ cc.Class({
     menuhide:function(){
         player.pause=false;
         // this.settingBoard.getComponent(cc.Animation).play('optionHide');
-        var moveH = cc.moveTo(1,cc.v2(488,880));
+        var moveH = cc.moveTo(1,cc.v2(549,740));
         this.node.runAction(moveH);
         var finished = cc.callFunc(function(target,numb){
             this.mask.active=false;
@@ -90,7 +90,7 @@ cc.Class({
     menushow:function() {
         player.pause=true;
         this.mask.active = true;
-        var moveS = cc.moveTo(1,cc.v2(536,292));
+        var moveS = cc.moveTo(1,cc.v2(536,92));
         this.node.runAction(moveS);
         cc.log("menushow!");
     },
